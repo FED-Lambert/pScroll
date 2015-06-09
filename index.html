@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Pscroll by FED-Lambert</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Pscroll</h1>
+      <h2 class="project-tagline">full page scroll for mobile</h2>
+      <a href="https://github.com/FED-Lambert/pScroll" class="btn">View on GitHub</a>
+      <a href="https://github.com/FED-Lambert/pScroll/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/FED-Lambert/pScroll/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="pscroll-pages-scroll-for-mobile" class="anchor" href="#pscroll-pages-scroll-for-mobile" aria-hidden="true"><span class="octicon octicon-link"></span></a>pScroll, pages scroll for mobile</h1>
+
+<blockquote>
+<p><em>pScroll</em> 基于<a href="http://zeptojs.com/">Zepto</a>的移动端滚动插件</p>
+</blockquote>
+
+<h3>
+<a id="目录" class="anchor" href="#%E7%9B%AE%E5%BD%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<a name="top"></a>目录</h3>
+
+<ul>
+<li><a href="#intro">简介(Intro)</a></li>
+<li><a href="#demo">示例(Demo)</a></li>
+<li><a href="#require">依赖(Require)</a></li>
+<li><a href="#usage">使用方法(Usage)</a></li>
+<li><a href="#config">参数列表(Config)</a></li>
+<li><a href="#api">方法列表(API)</a></li>
+<li><a href="#callback">回调函数(Callback)</a></li>
+<li><a href="#known-issues">已知问题(Issues)</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+
+<h3>
+<a id="简介intro-" class="anchor" href="#%E7%AE%80%E4%BB%8Bintro-" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<a name="intro"></a>简介(Intro) <a href="#top">[⬆]</a>
+</h3>
+
+<p>pScroll是基于<a href="http://zeptojs.com/">Zepto</a>的移动端滚动插件，使用css3变换与过渡实现滚动效果。</p>
+
+<h3>
+<a id="示例demo-" class="anchor" href="#%E7%A4%BA%E4%BE%8Bdemo-" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<a name="demo"></a>示例(Demo) <a href="#top">[⬆]</a>
+</h3>
+
+<h3>
+<a id="依赖require-" class="anchor" href="#%E4%BE%9D%E8%B5%96require-" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<a name="require"></a>依赖(Require) <a href="#top">[⬆]</a>
+</h3>
+
+<p><a href="http://zeptojs.com/">Zepto</a></p>
+
+<h3>
+<a id="使用方法usage-" class="anchor" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95usage-" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<a name="usage"></a>使用方法(Usage) <a href="#top">[⬆]</a>
+</h3>
+
+<pre><code>new pScroll({
+    // options
+});
+</code></pre>
+
+<pre><code>new pScroll({
+    wrap : '.wrapper'
+});
+</code></pre>
+
+<pre><code>new pScroll({
+    wrap     : '.wrapper',
+    axis     : 'x',
+    slideend : function(){
+        // do something
+    }
+});
+</code></pre>
+
+<h3>
+<a id="参数列表config-" class="anchor" href="#%E5%8F%82%E6%95%B0%E5%88%97%E8%A1%A8config-" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<a name="config"></a>参数列表(Config) <a href="#top">[⬆]</a>
+</h3>
+
+<table>
+<thead>
+<tr>
+<th>参数(args)</th>
+<th>说明(desc)</th>
+<th>默认值(default)</th>
+<th>可填值(allowed)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wrap</td>
+<td>父容器</td>
+<td>null(*)</td>
+<td>selector</td>
+</tr>
+<tr>
+<td>speed</td>
+<td>翻页速度</td>
+<td>500</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>easing</td>
+<td>时间函数</td>
+<td>'ease-in-out'</td>
+<td>'linear'</td>
+</tr>
+<tr>
+<td>axis</td>
+<td>翻页方向</td>
+<td>'y'</td>
+<td>'y'</td>
+</tr>
+<tr>
+<td>threshold</td>
+<td>翻页阀值</td>
+<td>50</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>loop</td>
+<td>是否循环翻页</td>
+<td>false</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>hash</td>
+<td>启动锚点功能</td>
+<td>false</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>delay</td>
+<td>延迟翻页</td>
+<td>false</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>trigger</td>
+<td>触发区域</td>
+<td>document</td>
+<td>selector</td>
+</tr>
+<tr>
+<td>prevent</td>
+<td>prevent</td>
+<td>true</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>slidestart</td>
+<td>开始滑动的回调函数</td>
+<td>null</td>
+<td>Function</td>
+</tr>
+<tr>
+<td>slideend</td>
+<td>结束滑动的回调函数</td>
+<td>null</td>
+<td>Function</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a id="方法列表api-" class="anchor" href="#%E6%96%B9%E6%B3%95%E5%88%97%E8%A1%A8api-" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<a name="api"></a>方法列表(API) <a href="#top">[⬆]</a>
+</h3>
+
+<table>
+<thead>
+<tr>
+<th>方法(API)</th>
+<th>说明(desc)</th>
+<th>参数(args)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>prev</td>
+<td>前翻一页</td>
+<td>null</td>
+</tr>
+<tr>
+<td>reload</td>
+<td>重翻当前页</td>
+<td>null</td>
+</tr>
+<tr>
+<td>next</td>
+<td>后翻一页</td>
+<td>null</td>
+</tr>
+<tr>
+<td>goPage</td>
+<td>翻到第n页</td>
+<td>Number(*)</td>
+</tr>
+<tr>
+<td>goStep</td>
+<td>位移n个像素值</td>
+<td>Number(*)</td>
+</tr>
+<tr>
+<td>on</td>
+<td>开启触摸监听</td>
+<td>null</td>
+</tr>
+<tr>
+<td>off</td>
+<td>关闭触摸监听</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a id="回调函数callback-" class="anchor" href="#%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0callback-" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<a name="callback"></a>回调函数(Callback) <a href="#top">[⬆]</a>
+</h3>
+
+<table>
+<thead>
+<tr>
+<th>回调函数(callback)</th>
+<th>说明(desc)</th>
+<th>参数(args)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>slidestart</td>
+<td>开始滑动时触发，参数：结束滑动页序号、开始滑动页序号。</td>
+<td>to、from</td>
+</tr>
+<tr>
+<td>slideend</td>
+<td>结束滑动时触发，参数：结束滑动页序号。</td>
+<td>index</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a id="已知问题issues-" class="anchor" href="#%E5%B7%B2%E7%9F%A5%E9%97%AE%E9%A2%98issues-" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<a name="known-issues"></a>已知问题(Issues) <a href="#top">[⬆]</a>
+</h3>
+
+<h3>
+<a id="license-" class="anchor" href="#license-" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<a name="license"></a>License <a href="#top">[⬆]</a>
+</h3>
+
+<p>Released under <a href="http://rem.mit-license.org/">MIT</a> LICENSE</p>
+
+<hr>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/FED-Lambert/pScroll">Pscroll</a> is maintained by <a href="https://github.com/FED-Lambert">FED-Lambert</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
+
