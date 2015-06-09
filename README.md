@@ -1,6 +1,6 @@
-# pScroll, full page scroll for mobile
+# pScroll, pages scroll for mobile
 
-> *pScroll* 基于[Zepto]的移动端全屏滚动插件
+> *pScroll* 基于[Zepto]的移动端滚动插件
 
 ### <a name="top"></a>目录
 * [简介(Intro)](#intro)
@@ -14,7 +14,7 @@
 * [License](#license)
 
 ### <a name="intro"></a>简介(Intro) [[⬆]](#top)
-pScroll是基于[Zepto]的移动端全屏滚动插件，使用css3变换与过渡实现滚动效果。
+pScroll是基于[Zepto]的移动端滚动插件，使用css3变换与过渡实现滚动效果。
 
 ### <a name="demo"></a>示例(Demo) [[⬆]](#top)
 
