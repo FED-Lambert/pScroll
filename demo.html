@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="format-detection" content="telephone=no,address=no,email=no">
+    <!-- <meta name="apple-itunes-app" content="app-id=" /> -->
+    <!-- <link rel="apple-touar-icon" sizes="114x114" href="" /> -->
+    <title> 模板页 </title>
+    <!-- 自定义样式 start -->
+    <link href="css/demo.css" rel="stylesheet">
+    <!-- 自定义样式 end -->
+</head>
+<body>
+<div class="ui-pc">
+    <div class="ui-tips">
+        <img src="" alt="">
+        <h3></h3>
+    </div>
+</div>
+<div class="ui-mobi">
+    <article class="is-on">
+        <div class="ui-list">
+            <div class="ui-list__header">A demo menu of pScroll</div>
+            <ul>
+                <li class="ui-list__arrow">
+                    <a href="javascript:">Demo 1</a>
+                    <span>纵向翻页</span>
+                    <span>包含动画</span>
+                    <span>页面跳转</span>
+                </li>
+                <li class="ui-list__arrow">
+                    <a href="javascript:">Demo 2</a>
+                    <span>横向翻页</span>
+                    <span>带Lego-Mobile Tab</span>
+                </li>
+                <li class="ui-list__arrow">
+                    <a href="javascript:">Demo 3</a>
+                    <span>纵向翻页</span>
+                    <span>循环翻页</span>
+                    <span>回调函数</span>
+                </li>
+            </ul>
+        </div>
+    </article>
+    <article>
+        <div class="ui-wrap">
+            <div class="ui-plist">
+                <section><div><h3>Demo 1</h3><h4>Page 1</h4></div></section>
+                <section><div><h3>Demo 1</h3><h4>Page 2</h4></div></section>
+                <section><div><h3>Demo 1</h3><h4>Page 3</h4></div></section>
+            </div>
+            <div class="ui-plist">
+                <section><div><h3>Demo 2</h3><h4>Page 1</h4></div></section>
+                <section><div><h3>Demo 2</h3><h4>Page 2</h4></div></section>
+                <section><div><h3>Demo 2</h3><h4>Page 3</h4></div></section>
+            </div>
+            <div class="ui-plist">
+                <section><div><h3>Demo 3</h3><h4>Page 1</h4></div></section>
+                <section><div><h3>Demo 3</h3><h4>Page 2</h4></div></section>
+                <section><div><h3>Demo 3</h3><h4>Page 3</h4></div></section>
+            </div>
+        </div>
+        <a class="ui-exit" href="javascript:">Go back</a>
+    </article>
+</div>
+<!--
+<div class="mod-tab" id="tab">
+    <div class="mod-tab__hd" data-js="nav">
+        <div class="mod-tab__hdItem act">01</div>
+        <div class="mod-tab__hdItem">02</div>
+        <div class="mod-tab__hdItem">03</div>
+    </div>
+    <div class="mod-tab__bd" data-js="content">
+        <div class="mod-tab__bdItem act">1</div>
+        <div class="mod-tab__bdItem">2</div>
+        <div class="mod-tab__bdItem">3</div>
+    </div>
+</div> -->
+
+<script type="text/javascript" src="js/sea.js"></script>
+<script type="text/javascript">
+    seajs.config({
+        paths: {
+            'legoPath': 'http://assets.dwstatic.com/mobile/src/js/',
+            'modulePath': 'http://assets.dwstatic.com/legomobi/3.0.0/js/'
+        },
+        alias: {
+            'zepto': 'legoPath/main/zepto/zepto.min.js',
+            'touch': 'legoPath/main/zepto/zepto.touch.js',
+            'iscroll': 'legoPath/module/iscroll/iscroll.js',
+            'pScroll': '/js/pScroll.js'
+        }
+    })
+</script>
+<script>
+    seajs.use(['modulePath/tab','pScroll'], function(Tab, pScroll) {
+        // var tab = new Tab('#tab');
+        var demo = new pScroll({
+            wrap : '.ui-mobi',
+            trigger : '.ui-mobi',
+            axis : 'x',
+            speed : 800,
+            slidestart : function(){
+                $(this).addClass('is-on').siblings().removeClass('is-on');
+            },
+            slideend : function(){
+                if ($(this).index() == 0) {
+                    var index = plist.filter('.is-on').index();
+                    if (index == -1) {
+                        console.log('ignore')
+                    } else {
+                        task[plist.filter('.is-on').index()].off();
+                        plist.removeClass('is-on');
+                    }
+                } else {
+                    $('.ui-list li.is-on').removeClass('is-on');
+                }
+            }
+        }).off();
+        var plist = $('.ui-plist');
+        var task = [
+            new pScroll({
+                wrap : plist.eq(0),
+                trigger : plist.eq(0),
+            }).off(),
+            new pScroll({
+                wrap : plist.eq(1),
+                trigger : plist.eq(1),
+                axis : 'x'
+
+            }).off(),
+            new pScroll({
+                wrap : plist.eq(2),
+                trigger : plist.eq(2),
+                loop : true
+            }).off()
+        ];
+        $('.ui-list').on('touchstart', 'li', function(e){
+            $(this).addClass('is-active');
+        }).on('touchend', 'li', function(){
+            var index = $(this).removeClass('is-active').addClass('is-on').index();
+            plist.eq(index).addClass('is-on');
+            task[index].on();
+            setTimeout(demo.goPage.bind(demo, 1), 200);
+        })
+        $('.ui-exit').on('touchstart', function(){
+            $(this).addClass('is-active');
+        }).on('touchend', function(){
+            $(this).removeClass('is-active');
+            demo.goPage(0);
+        })
+    });
+</script>
+</body>
+</html>
