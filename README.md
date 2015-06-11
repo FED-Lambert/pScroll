@@ -69,7 +69,6 @@ new pScroll({
 | reload   | 重翻当前页   | null       |
 | next     | 后翻一页     | null      |
 | goPage   | 翻到第n页 	 | Number(*) |
-| goStep   | 位移n个像素值 | Number(*) |
 | on       | 开启触摸监听  | null      |
 | off      | 关闭触摸监听  | null	     |
 
