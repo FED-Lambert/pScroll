@@ -117,12 +117,15 @@
             'zepto': 'legoPath/main/zepto/zepto.min.js',
             'touch': 'legoPath/main/zepto/zepto.touch.js',
             'iscroll': 'legoPath/module/iscroll/iscroll.js',
-            'pScroll': '/pScroll.js'
+            'pScroll': 'pScroll.js'
         }
     })
 </script>
 <script>
     seajs.use(['modulePath/tab','pScroll'], function(Tab, pScroll) {
+        if ($('body').hasClass('is-pc')) {
+            return
+        }
         var demo = new pScroll({
             wrap : '.ui-mobi',
             trigger : '.ui-mobi',
@@ -195,9 +198,6 @@
         $('select').on('change', function(){
             task[0].goPage(this.value);
         })
-        // var tab = new Tab('#tab');
-        // 1 callback api
-        // 2 on the children elem
         $('[data-js="nav"]').on('touchstart', '.mod-tab__hdItem', function(){
             task[1].goPage($(this).index());
         })
